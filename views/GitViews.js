@@ -34,7 +34,10 @@ class GitViews{
     }
     
     jogaNaTela(model){
+        console.log(model);
+        if(model.repositories.length > 0){
         this._titulo.innerText = model.user;
         this._tabela.innerHTML = this.adicionarRepositorios(model);
+        }
     }
 }

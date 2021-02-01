@@ -16,19 +16,28 @@ class GitModel{
         request.open("GET",`https://api.github.com/users/${this._user}/repos`,false);
 
         request.addEventListener("load",()=>{
-            let response = request.responseText;
-            response = JSON.parse(response);
-            response.forEach((objeto) => {
-                let repositorio = {
-                    nome:objeto.name,
-                    login:objeto.owner.login,
-                    link:objeto.html_url,
-                    linguagem:objeto.language
-                }
-                
-                this._repositories.push(repositorio);
-                
-            })
+
+           if(request.status == 200){ 
+                let response = request.responseText;
+                response = JSON.parse(response);
+                response.forEach((objeto) => {
+                    let repositorio = {
+                        nome:objeto.name,
+                        login:objeto.owner.login,
+                        link:objeto.html_url,
+                        linguagem:objeto.language
+                    }
+                    
+                    this._repositories.push(repositorio);
+                    
+                })
+            }
+            else if(request.status == 404){
+                throw alert("404 - User not Found");
+            }
+            else{
+                throw alert("Unknown error - please verify the user anda try again.");
+            }    
         });
         request.send();
 

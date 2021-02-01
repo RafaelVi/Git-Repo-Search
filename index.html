@@ -35,6 +35,8 @@
     form.addEventListener("submit",(event) => {
         event.preventDefault();
         controler.cria(user.value);
+        user.value = "";
+        user.focus();
 
     });
     
