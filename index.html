@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git User repositories search</title>
+    <!-- <link rel="stylesheet" href="reset.css"> -->
+    <link rel="stylesheet" href="index.css">
+    
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+        <form id="form">
+            <laber for="search-input">Procure por um usuário!</laber>
+            <input type="text" id="search-input" placeholder="Digite o nome do usuário">
+            <input type="submit"id="search-button">
+        </form>
+        <h1 id="repo-owner"></h1>
+        <div id="repo-view"></div>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+<script src="controller/GitController.js"></script>
+<script src="model/GitModel.js"></script>
+<script src="views/GitViews.js"></script>
+<script>
+    let form = document.querySelector("#form");
+    let user = document.querySelector("#search-input");
+    let controler = new GitController();
+    form.addEventListener("submit",(event) => {
+        event.preventDefault();
+        controler.cria(user.value);
+
+    });
+    
+</script>
+
+</html>
